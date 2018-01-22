@@ -10,7 +10,9 @@ https://github.com/jakewmeyer/Crypto - which uses the basic data from https://ww
 
 #### Example hardcoded alert high limits:
 ```
- btc_alert = 12000
- eth_alert = 1250
- xrp_alert = 2
+coins = {
+	'btc': 12000,
+	'eth': 800,
+	'xrp': 2
+	}
 ```
