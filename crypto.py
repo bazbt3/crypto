@@ -1,6 +1,6 @@
 # crypto
 # Cryptocurrency alerts
-# v0.4 for Python 3.5
+# v0.5 for Python 3.5
 
 # Define coins and alert high limits:
 coins = {
@@ -9,12 +9,27 @@ coins = {
 	'xrp': 2
 	}
 
+# Define coin holdings:
+holdings = {
+	'btc': 0.00484719,
+	'eth': 0.07431345,
+	'xrp': 35.893
+	}
+
 # Define global data variable (until get_price is changed to return 'change')
 global data
 
-# For Pushover alert:
+# For Pushover alerts:
 import http.client, urllib
 pushover_message = ''
+# Read app token from file:
+tokenfile = open('pushover_app_token.txt', "r")
+app_token = tokenfile.read()
+app_token = app_token.strip()
+# Read user token from file:
+tokenfile = open('pushover_user_token.txt', "r")
+user_token = tokenfile.read()
+user_token = user_token.strip()
 
 # get_price function taken from: https://github.com/jakewmeyer/Crypto
 # Uses data from https://www.cryptonator.com/api
@@ -39,7 +54,6 @@ def get_price(coin, base_currency):
 
 # Extract GBP values for BTC, ETH and XRP, and alert on values exceeding preset limits:
 for coin, alert in coins.items():
-	# Extract GBP values for BTC, ETH and XRP, and alert on values exceeding preset limits:
 	value = get_price(coin,'gbp')
 	value = round(float(value),2)
 	change = float(data['ticker']['change'])
@@ -51,7 +65,9 @@ for coin, alert in coins.items():
 		indicator = '-'
 	elif change > 0:
 		indicator = '+'
-	message = exceeded + coin + ': £' + str(value) + indicator
+	holding = holdings[coin]
+	real_money = round(float(value * holding),2)
+	message = exceeded + coin + ': £' + str(real_money) + indicator
 	pushover_message += message + ' | '
 
 pushover_message = pushover_message.rstrip(' | ')
@@ -60,8 +76,8 @@ pushover_message = pushover_message.rstrip(' | ')
 conn = http.client.HTTPSConnection("api.pushover.net:443")
 conn.request("POST", "/1/messages.json",
   urllib.parse.urlencode({
-    "token": "[REDACTED]",
-    "user": "[REDACTED]",
+    "token": app_token,
+    "user": user_token,
     "message": pushover_message,
   }), { "Content-type": "application/x-www-form-urlencoded" })
 conn.getresponse()
