@@ -1,6 +1,6 @@
 # crypto
 # Cryptocurrency alerts
-# v0.5 for Python 3.5
+# v0.5.1 for Python 3.5
 
 # Define coins and alert high limits:
 coins = {
@@ -67,11 +67,12 @@ for coin, alert in coins.items():
 		indicator = '+'
 	holding = holdings[coin]
 	real_money = round(float(value * holding),2)
-	message = exceeded + coin + ': £' + str(real_money) + indicator
+	message = exceeded + coin.upper() + ': £' + str(value) + indicator + ' £' + str(real_money)
 	pushover_message += message + ' | '
 
+# Strip the final, superfluous divider
 pushover_message = pushover_message.rstrip(' | ')
-	
+
 # Send message to Pushover:
 conn = http.client.HTTPSConnection("api.pushover.net:443")
 conn.request("POST", "/1/messages.json",
