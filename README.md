@@ -19,5 +19,5 @@ coins = {
 
 ### Prerequisites:
 * Pushover account application and user tokens - read from separate files to give some portability to the code:
- * pushover_app_token.txt
- * pushover_user_token.txt 
+ * `pushover_app_token.txt`
+ * `pushover_user_token.txt`
