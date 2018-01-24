@@ -1,8 +1,5 @@
-## crypto
+<img src="crypto_pushover_icon.jpg" width="96" alt="crypto Cryptocurrency alerts.">
 
-![crypto_pushover_icon.jpg](crypto_pushover_icon.jpg | width=75)
-
-### Rough cryptocurrency alerts
 Sends a Pushover alert with three cryptocurrency values (the equivalent in GBP and the user's holding also in GBP), their movement within the preceding hour, including a message if any exceeds a value hard coded within the application.
 
 Application is currently hosted at pythonanywhere.com and run as a 'task' every hour.
