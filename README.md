@@ -1,5 +1,7 @@
 ## crypto
 
+![crypto_pushover_icon.jpg](crypto_pushover_icon.jpg | width=75)
+
 ### Rough cryptocurrency alerts
 Sends a Pushover alert with three cryptocurrency values (the equivalent in GBP and the user's holding also in GBP), their movement within the preceding hour, including a message if any exceeds a value hard coded within the application.
 
