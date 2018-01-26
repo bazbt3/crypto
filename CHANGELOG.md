@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.6 2018-01-26:
+* Added: Message also sent to my pnut.io dev channel.
+
 ### v0.5.1 2018-01-24:
 * Reinstated GBP per coin values.
 * Added Pushover application icon.

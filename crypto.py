@@ -1,6 +1,6 @@
 # crypto
 # Cryptocurrency alerts
-# v0.5.1 for Python 3.5
+# v0.6 for Python 3.5
 
 # Define coins and alert high limits:
 coins = {
@@ -16,11 +16,17 @@ holdings = {
 	'xrp': 35.893
 	}
 
-# Define global data variable (until get_price is changed to return 'change')
-global data
 
 # For Pushover alerts:
 import http.client, urllib
+
+# Import @33MHz and @thrrgilag's library for interacting with pnut.io:
+import pnutpy
+
+# Define global data variable (until get_price is changed to return 'change')
+global data
+
+# Setup Pushover authorisation:
 pushover_message = ''
 # Read app token from file:
 tokenfile = open('pushover_app_token.txt', "r")
@@ -31,7 +37,14 @@ tokenfile = open('pushover_user_token.txt', "r")
 user_token = tokenfile.read()
 user_token = user_token.strip()
 
-# get_price function taken from: https://github.com/jakewmeyer/Crypto
+# Setup pnut.io authorisation:
+tokenfile = open("pnut_app_token.txt", "r")
+token = tokenfile.read()
+token = token.strip()
+pnutpy.api.add_authorization_token(token)
+
+
+# get_price function taken unmodified from: https://github.com/jakewmeyer/Crypto
 # Uses data from https://www.cryptonator.com/api
 
 import requests
@@ -73,7 +86,10 @@ for coin, alert in coins.items():
 # Strip the final, superfluous divider
 pushover_message = pushover_message.rstrip(' | ')
 
-# Send message to Pushover:
+
+# PUSHOVER MESSAGE:
+
+# From https://pushover.net/faq#library
 conn = http.client.HTTPSConnection("api.pushover.net:443")
 conn.request("POST", "/1/messages.json",
   urllib.parse.urlencode({
@@ -82,3 +98,11 @@ conn.request("POST", "/1/messages.json",
     "message": pushover_message,
   }), { "Content-type": "application/x-www-form-urlencoded" })
 conn.getresponse()
+
+
+# PNUT.IO message:
+
+# Create message in channel 962, using the text from pushover_message:
+posttext = pushover_message
+channelid = 962
+postcontent = pnutpy.api.create_message(channelid, data={'text': posttext})
