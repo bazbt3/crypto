@@ -1,11 +1,11 @@
 # crypto
 # Cryptocurrency alerts
-# v0.6 for Python 3.5
+# v0.6.1 for Python 3.5
 
 # Define coins and alert high limits:
 coins = {
 	'btc': 12000,
-	'eth': 800,
+	'eth': 1250,
 	'xrp': 2
 	}
 

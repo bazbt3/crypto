@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.6.1 2018-01-30:
+* Updated ETH limit value.
+
 ### v0.6 2018-01-26:
 * Added: Message also sent to my pnut.io dev channel.
 
