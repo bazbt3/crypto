@@ -1,4 +1,4 @@
-<img src="crypto_pushover_icon.jpg" height="96" alt="crypto Cryptocurrency alerts."> <img src="crypto_btc_plot.jpg" height="96" alt="crypto Cryptocurrency alerts."> <br>
+<img src="crypto_pushover_icon.jpg" height="96" alt="crypto Cryptocurrency alerts."> <img src="crypto_btc_plot.jpg" height="96" alt="example crypto BTC graph."> <br>
 The *example* application sends a Pushover alert and a message to my pnut.io 'dev' channel:
 
 * Three cryptocurrency value equivalents in GBP,
@@ -22,11 +22,8 @@ Application is currently tested in Pythonista and at pythonanywhere.com and my w
 https://github.com/jakewmeyer/Crypto - which uses the basic data from https://www.cryptonator.com/api    
 Tiny modification: its `data` variable is converted to global for use outside the routine.
 
-#### Example hardcoded alert high limits:
-```
-coins = {
-	'btc': 12000,
-	'eth': 800,
-	'xrp': 2
-	}
-```
+### What does it look like?
+An alert (iOS):<br>
+<img src="crypto_pushover_alert.jpg" width="256" alt="crypto Pushover alert."> <br><br>
+An expanded message (iOS):
+<img src="crypto_pushover_message.jpg" width="256" alt="crypto Pushover alert.">
