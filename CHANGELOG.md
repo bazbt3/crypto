@@ -1,7 +1,7 @@
 ## Changelog
 (most recent first)
 
-### v0.7 2018-02-03:
+### v0.7.1 2018-02-03:
 * Attempting to fix a dependency on Python `tk` module, which doesn't appear to be installed at my web host. Help from here: https://github.com/matplotlib/matplotlib/issues/9017
 
 ### v0.7 2018-02-03:
