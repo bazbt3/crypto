@@ -1,7 +1,8 @@
 # crypto
 # Cryptocurrency alerts
-# v0.6.1 for Python 3.5
+# v0.7 for Python 3.5
 
+# Define coins:
 # Define coins and alert high limits:
 coins = {
 	'btc': 12000,
@@ -16,6 +17,11 @@ holdings = {
 	'xrp': 35.893
 	}
 
+# INITIAL SETUP:
+
+# Graphing:
+import matplotlib
+import matplotlib.pyplot as plt
 
 # For Pushover alerts:
 import http.client, urllib
@@ -43,8 +49,9 @@ token = tokenfile.read()
 token = token.strip()
 pnutpy.api.add_authorization_token(token)
 
+# DEFINE REQUEST FOR CURENCY DATA FROM CRYPTONATOR API:
 
-# get_price function taken unmodified from: https://github.com/jakewmeyer/Crypto
+# get_price function taken unmodified (except for definition of global data) from: https://github.com/jakewmeyer/Crypto
 # Uses data from https://www.cryptonator.com/api
 
 import requests
@@ -65,8 +72,15 @@ def get_price(coin, base_currency):
 	else:
 		return data['ticker']['price']
 
-# Extract GBP values for BTC, ETH and XRP, and alert on values exceeding preset limits:
+# GET CURRENCIES, COMPLIME MESSAGE AND GRAPHS:
+
 for coin, alert in coins.items():
+
+	# Open historic values file:
+	y = open('crypto_' + coin + '_values.txt', 'r')
+	y = y.readlines()
+
+	# Get latest value from cryptonator API:
 	value = get_price(coin,'gbp')
 	value = round(float(value),2)
 	change = float(data['ticker']['change'])
@@ -82,27 +96,47 @@ for coin, alert in coins.items():
 	real_money = round(float(value * holding),2)
 	message = exceeded + coin.upper() + ': £' + str(value) + indicator + ' £' + str(real_money)
 	pushover_message += message + ' | '
+	
+	# Store a maximum of the last 24 data elements for each currency, and create and save graphs:
+	
+	# Pop first element from list, append latest value to list:
+	if len(y) >= 24:
+		y.pop(0)
+	y.append(str(value) + '\n')
+
+	# Save the list to file:
+	f=open('crypto_' + coin + '_values.txt','w')
+	for ele in y:
+		f.write(ele)
+	f.close()
+
+	# Plot a basic graph:
+	fig = plt.figure()
+	plt.plot(y)
+	plt.ylabel(coin.upper())
+
+	# Save a .png file, overwriting any already there:
+	fig.savefig('crypto_' + coin + '_plot.jpg')
 
 # Strip the final, superfluous divider
 pushover_message = pushover_message.rstrip(' | ')
 
-
-# PUSHOVER MESSAGE:
+# SEND PUSHOVER MESSAGE:
 
 # From https://pushover.net/faq#library
-conn = http.client.HTTPSConnection("api.pushover.net:443")
-conn.request("POST", "/1/messages.json",
-  urllib.parse.urlencode({
-    "token": app_token,
-    "user": user_token,
-    "message": pushover_message,
-  }), { "Content-type": "application/x-www-form-urlencoded" })
-conn.getresponse()
-
+import requests
+r = requests.post("https://api.pushover.net/1/messages.json", data = {
+  "token": app_token,
+  "user": user_token,
+  "message": pushover_message
+},
+files = {
+  "attachment": ("image.jpg", open("crypto_btc_plot.jpg", "rb"), "image/jpg")
+})
 
 # PNUT.IO message:
 
-# Create message in channel 962, using the text from pushover_message:
+# Create message in channel 962, using ONLY the text from pushover_message:
 posttext = pushover_message
 channelid = 962
 postcontent = pnutpy.api.create_message(channelid, data={'text': posttext})

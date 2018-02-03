@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.7 2018-02-03:
+* A graph is built for each of the cryptocurrencies and saved in the same folder as the application. In the example application, the BTC graph is also sent in the Pushover alert (not enabled for the pnut.io message yet.)
+
 ### v0.6.1 2018-01-30:
 * Updated ETH limit value.
 
