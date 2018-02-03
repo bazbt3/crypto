@@ -5,7 +5,7 @@ The *example* application sends a Pushover alert and a message to my pnut.io 'de
 * the user's holding, also in GBP,
 * their movement within the preceding hour,
 * a message if any exceeds a value hard coded within the application.
-* A graph is created for each currency and saved in the application folder, and the BTC graph is added to the Pushover alert message (though not the pnut.io message yet.)
+* A graph of upto the last 24 hours' movements is created for each currency and saved in the application folder, and the BTC graph is added to the Pushover alert message (though not the pnut.io message yet.)
 
 Application is currently tested in Pythonista and at pythonanywhere.com and my web host. Runs every hour either as a pythonanywhere 'task' or a cron job at my web host.
 
