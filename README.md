@@ -23,4 +23,4 @@ coins = {
  * `pushover_user_token.txt`
 * The PNUTpy libraries: `pip install pnutpy`.
 * For graphing: `pip install matplotlib`.
-* One text file for each of the cryptocurrencies desired, named as `crypto_(currency 3 letter name)_values.txt'. Note: the 'btc' graph is necessary, as the only one sent as a Pushover alert.
+* One text file for each of the cryptocurrencies desired, named as crypto_(currency 3 letter name)_values.txt, e.g. `crypto_btc_values.txt`. Note: the 'btc' file is necessary, it's the only one sent as a Pushover alert.
