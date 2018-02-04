@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.7.4 2018-02-04:
+* Changed filetype to pdf (worth a try; thanks @jws. If it fails I'll try Pillow/PIL.)
+
 ### v0.7.3 2018-02-03:
 * Minor code comment and graph tweaks.
 

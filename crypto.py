@@ -1,6 +1,6 @@
 # crypto
 # Cryptocurrency alerts
-# v0.7.3 for Python 3.5
+# v0.7.4 for Python 3.5
 
 # Define coins:
 # Define coins and alert high limits:
@@ -100,9 +100,9 @@ for coin, alert in coins.items():
 	real_money = round(float(value * holding),2)
 	message = exceeded + coin.upper() + ': £' + str(value) + indicator + ' £' + str(real_money)
 	pushover_message += message + ' | '
-	
+
 	# Store a maximum of the last 24 data elements for each currency, and create and save graphs:
-	
+
 	# Pop first element from list, append latest value to list:
 	if len(y) >= 24:
 		y.pop(0)
@@ -119,8 +119,8 @@ for coin, alert in coins.items():
 	plt.plot(y)
 	plt.ylabel('GBP / ' + coin.upper())
 
-	# Save a .jpg file, overwriting any already there:
-	fig.savefig('crypto_' + coin + '_plot.jpg')
+	# Save a .pdf file, overwriting any already there:
+	fig.savefig('crypto_' + coin + '_plot.pdf')
 
 # Strip the final, superfluous divider:
 pushover_message = pushover_message.rstrip(' | ')
@@ -136,7 +136,7 @@ r = requests.post("https://api.pushover.net/1/messages.json", data = {
   "message": pushover_message
 },
 files = {
-  "attachment": ("image.jpg", open("crypto_btc_plot.jpg", "rb"), "image/jpg")
+  "attachment": ("image.pdf", open("crypto_btc_plot.pdf", "rb"), "image/pdf")
 })
 
 # PNUT.IO message:
