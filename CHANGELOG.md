@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.7.5 2018-02-04:
+* Reverted back to jpg; I'm not certain I got the image parameters correct but my pdf won't render in the Pushover iOS app.
+
 ### v0.7.4 2018-02-04:
 * Changed filetype to pdf (worth a try; thanks @jws. If it fails I'll try Pillow/PIL.)
 

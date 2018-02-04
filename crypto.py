@@ -1,6 +1,6 @@
 # crypto
 # Cryptocurrency alerts
-# v0.7.4 for Python 3.5
+# v0.7.5 for Python 3.5
 
 # Define coins:
 # Define coins and alert high limits:
@@ -119,8 +119,8 @@ for coin, alert in coins.items():
 	plt.plot(y)
 	plt.ylabel('GBP / ' + coin.upper())
 
-	# Save a .pdf file, overwriting any already there:
-	fig.savefig('crypto_' + coin + '_plot.pdf')
+	# Save a .jpg file, overwriting any already there:
+	fig.savefig('crypto_' + coin + '_plot.jpg')
 
 # Strip the final, superfluous divider:
 pushover_message = pushover_message.rstrip(' | ')
@@ -136,7 +136,7 @@ r = requests.post("https://api.pushover.net/1/messages.json", data = {
   "message": pushover_message
 },
 files = {
-  "attachment": ("image.pdf", open("crypto_btc_plot.pdf", "rb"), "image/pdf")
+  "attachment": ("image.jpg", open("crypto_btc_plot.jpg", "rb"), "image/jpg")
 })
 
 # PNUT.IO message:
