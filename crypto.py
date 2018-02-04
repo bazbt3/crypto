@@ -1,6 +1,6 @@
 # crypto
 # Cryptocurrency alerts
-# v0.7.2 for Python 3.5
+# v0.7.3 for Python 3.5
 
 # Define coins:
 # Define coins and alert high limits:
@@ -25,6 +25,9 @@ import matplotlib.pyplot as plt
 
 # For Pushover alerts:
 import http.client, urllib
+
+# For Cryptocurrency and Pushover:
+import requests
 
 # Import @33MHz and @thrrgilag's library for interacting with pnut.io:
 import pnutpy
@@ -54,7 +57,8 @@ pnutpy.api.add_authorization_token(token)
 # get_price function taken unmodified (except for definition of global data) from: https://github.com/jakewmeyer/Crypto
 # Uses data from https://www.cryptonator.com/api
 
-import requests
+# Already done above:
+#import requests
 
 def get_price(coin, base_currency):
 	"""Returns current price of given coin in the respective currency"""
@@ -113,18 +117,19 @@ for coin, alert in coins.items():
 	# Plot a basic graph:
 	fig = plt.figure()
 	plt.plot(y)
-	plt.ylabel(coin.upper())
+	plt.ylabel('GBP / ' + coin.upper())
 
-	# Save a .png file, overwriting any already there:
+	# Save a .jpg file, overwriting any already there:
 	fig.savefig('crypto_' + coin + '_plot.jpg')
 
-# Strip the final, superfluous divider
+# Strip the final, superfluous divider:
 pushover_message = pushover_message.rstrip(' | ')
 
 # SEND PUSHOVER MESSAGE:
 
 # From https://pushover.net/faq#library
-import requests
+# Already done above:
+#import requests
 r = requests.post("https://api.pushover.net/1/messages.json", data = {
   "token": app_token,
   "user": user_token,

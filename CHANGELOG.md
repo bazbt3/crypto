@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.7.3 2018-02-03:
+* Minor code comment and graph tweaks.
+
 ### v0.7.2 2018-02-03:
 * Manual code revert. Failure to create alerts at pythonanywhere, malformed vertical axis labels at my web host.
 
