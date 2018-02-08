@@ -1,6 +1,6 @@
 # crypto
 # Cryptocurrency alerts
-# v0.7.5 for Python 3.5
+# v0.7.6 for Python 3.5
 
 # Define coins:
 # Define coins and alert high limits:
@@ -21,6 +21,7 @@ holdings = {
 
 # Graphing:
 import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 # For Pushover alerts:

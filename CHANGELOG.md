@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.76 2018-02-08:
+* Changed matplotlib import again, adding `matplotlib.use("Agg")` to sidestep `tkinter` issue. (Unsuccessfully tried @jws' suggestion and now following identical fix from pythonanywhere!)
+
 ### v0.7.5 2018-02-04:
 * Reverted back to jpg; I'm not certain I got the image parameters correct but my pdf won't render in the Pushover iOS app.
 
