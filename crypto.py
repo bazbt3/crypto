@@ -1,14 +1,16 @@
 # crypto
 # Cryptocurrency alerts
-# v0.7.6 for Python 3.5
+# v0.7.7 for Python 3.5
 
 # Define coins:
+
 # Define coins and alert high limits:
 coins = {
 	'btc': 12000,
 	'eth': 1250,
 	'xrp': 2
 	}
+coins_list_len = len(coins)
 
 # Define coin holdings:
 holdings = {
@@ -23,6 +25,8 @@ holdings = {
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
+from PIL import Image
 
 # For Pushover alerts:
 import http.client, urllib
@@ -123,6 +127,39 @@ for coin, alert in coins.items():
 	# Save a .jpg file, overwriting any already there:
 	fig.savefig('crypto_' + coin + '_plot.jpg')
 
+# Stitch the 3 graphs together:
+
+# Setup list of image sizes:
+x_sizes = []
+y_sizes = []
+
+# Get all the image dimwnsions:
+for coin in coins:
+	crypto_img = Image.open('crypto_' + coin + '_plot.jpg')
+	x, y = crypto_img.size
+	x_sizes.append(x)
+	y_sizes.append(y)
+
+max_x_sizes = max(x_sizes)
+max_y_sizes = max(y_sizes)
+
+# Size backdrop for stitching:
+new_image_x = max_x_sizes
+new_image_y = max_y_sizes * coins_list_len
+
+# Create and save backdrop for stitching:
+backdrop = Image.new('RGB', (new_image_x, new_image_y))
+backdrop.save('crypto_backdrop.jpg')
+
+# Add images over backdrop at left side and at regular vertical intervals:
+y_image_placement = 0
+for coin in coins:
+	crypto_img = Image.open('crypto_' + coin + '_plot.jpg')
+	placement = (0, y_image_placement)
+	backdrop.paste(crypto_img, placement)
+	backdrop.save('crypto_3_graphs.jpg')
+	y_image_placement += max_y_sizes
+
 # Strip the final, superfluous divider:
 pushover_message = pushover_message.rstrip(' | ')
 
@@ -137,7 +174,7 @@ r = requests.post("https://api.pushover.net/1/messages.json", data = {
   "message": pushover_message
 },
 files = {
-  "attachment": ("image.jpg", open("crypto_btc_plot.jpg", "rb"), "image/jpg")
+  "attachment": ("image.jpg", open("crypto_3_graphs.jpg", "rb"), "image/jpg")
 })
 
 # PNUT.IO message:

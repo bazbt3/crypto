@@ -1,7 +1,10 @@
 ## Changelog
 (most recent first)
 
-### v0.76 2018-02-08:
+### v0.7.7 2018-02-11:
+* Stitched the 3 graphs together vertically for the Pushover alert.
+
+### v0.7.6 2018-02-08:
 * Changed matplotlib import again, adding `matplotlib.use("Agg")` to sidestep `tkinter` issue. (Unsuccessfully tried @jws' suggestion and now following identical fix from pythonanywhere!)
 
 ### v0.7.5 2018-02-04:
