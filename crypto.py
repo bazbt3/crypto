@@ -1,6 +1,6 @@
 # crypto
 # Cryptocurrency alerts
-# v0.7.7 for Python 3.5
+# v0.7.8 for Python 3.5
 
 # Define coins:
 
@@ -81,7 +81,10 @@ def get_price(coin, base_currency):
 	else:
 		return data['ticker']['price']
 
-# GET CURRENCIES, COMPLIME MESSAGE AND GRAPHS:
+# GET CURRENCIES, COMPILE MESSAGE AND GRAPHS:
+
+# Set total real-world currency holding to zero:
+total_holding = 0
 
 for coin, alert in coins.items():
 
@@ -103,6 +106,7 @@ for coin, alert in coins.items():
 		indicator = '+'
 	holding = holdings[coin]
 	real_money = round(float(value * holding),2)
+	total_holding += real_money
 	message = exceeded + coin.upper() + ': £' + str(value) + indicator + ' £' + str(real_money)
 	pushover_message += message + ' | '
 
@@ -162,6 +166,10 @@ for coin in coins:
 
 # Strip the final, superfluous divider:
 pushover_message = pushover_message.rstrip(' | ')
+
+# Add the total holding before the coins:
+total_holding = round(float(total_holding),2)
+pushover_message = 'Total: £' + str(total_holding) + ' | ' + pushover_message
 
 # SEND PUSHOVER MESSAGE:
 

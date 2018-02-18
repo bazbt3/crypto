@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.7.8 2018-02-18:
+* Added total portfolio value to message.
+
 ### v0.7.7 2018-02-11:
 * Stitched the 3 graphs together vertically for the Pushover alert.
 

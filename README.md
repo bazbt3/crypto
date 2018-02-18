@@ -3,7 +3,7 @@
 A Python 3.5 application; this *example* app sends a Pushover alert and a message to my pnut.io 'dev' channel:
 
 * Three cryptocurrency value equivalents in GBP,
-* the user's holding, also in GBP,
+* the user's holding in total and per coin, also in GBP,
 * their movement within the preceding hour,
 * a message if any exceeds a value hard coded within the application.
 * A graph of upto the last 24 hours' movements is created for each currency and saved in the application folder, and the BTC graph is added to the Pushover alert message (though not the pnut.io message yet.)
