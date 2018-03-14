@@ -1,6 +1,8 @@
+#!/usr/bin/env python3
+
 # crypto
 # Cryptocurrency alerts
-# v0.7.8 for Python 3.5
+# v0.8 for Python 3.5
 
 # Define coins:
 
@@ -34,8 +36,9 @@ import http.client, urllib
 # For Cryptocurrency and Pushover:
 import requests
 
+# DISABLED 2018-03-14:
 # Import @33MHz and @thrrgilag's library for interacting with pnut.io:
-import pnutpy
+# import pnutpy
 
 # Define global data variable (until get_price is changed to return 'change')
 global data
@@ -185,9 +188,10 @@ files = {
   "attachment": ("image.jpg", open("crypto_3_graphs.jpg", "rb"), "image/jpg")
 })
 
-# PNUT.IO message:
 
+# DISABLED 2018-03-14:
+# PNUT.IO message:
 # Create message in channel 962, using ONLY the text from pushover_message:
-posttext = pushover_message
-channelid = 962
-postcontent = pnutpy.api.create_message(channelid, data={'text': posttext})
+# posttext = pushover_message
+# channelid = 962
+# postcontent = pnutpy.api.create_message(channelid, data={'text': posttext})

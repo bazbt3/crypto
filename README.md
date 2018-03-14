@@ -1,6 +1,6 @@
 <img src="crypto_pushover_icon.jpg" height="96" alt="crypto Cryptocurrency alerts."> <img src="crypto_btc_plot.jpg" height="96" alt="example crypto BTC graph."> <br>
 ## What is crypto?
-A Python 3.5 application; this *example* app sends a Pushover alert and a message to my pnut.io 'dev' channel:
+A Python 3.5 application; this *example* app sends a Pushover alert. (Previously also sent a message to my pnut.io 'dev' channel; text retained below.)
 
 * Three cryptocurrency value equivalents in GBP,
 * the user's holding in total and per coin, also in GBP,

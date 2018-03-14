@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.8 2018-03-14:
+* DISABLED pnut.io messages by commenting out code to import PNUTpy and creation of message.
+
 ### v0.7.8 2018-02-18:
 * Added total portfolio value to message.
 
