@@ -54,11 +54,12 @@ tokenfile = open('pushover_user_token.txt', "r")
 user_token = tokenfile.read()
 user_token = user_token.strip()
 
+# DISABLED 2018-03-16:
 # Setup pnut.io authorisation:
-tokenfile = open("pnut_app_token.txt", "r")
-token = tokenfile.read()
-token = token.strip()
-pnutpy.api.add_authorization_token(token)
+#tokenfile = open("pnut_app_token.txt", "r")
+#token = tokenfile.read()
+#token = token.strip()
+#pnutpy.api.add_authorization_token(token)
 
 # DEFINE REQUEST FOR CURENCY DATA FROM CRYPTONATOR API:
 

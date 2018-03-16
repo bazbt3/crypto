@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.8.1 2018-03-16:
+* DISABLED pnut.io auth. (I'd missed it.)
+
 ### v0.8 2018-03-14:
 * DISABLED pnut.io messages by commenting out code to import PNUTpy and creation of message.
 
