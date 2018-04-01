@@ -1,6 +1,9 @@
 ## Changelog
 (most recent first)
 
+### v0.8.2 2018-04-01:
+* Increased number of stored data points to 28 prior to reducing the frequency of the cron job from hourly to twice-daily with a retention of 2 weeks of data.
+
 ### v0.8.1 2018-03-16:
 * DISABLED pnut.io auth. (I'd missed it.)
 

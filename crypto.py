@@ -2,7 +2,7 @@
 
 # crypto
 # Cryptocurrency alerts
-# v0.8 for Python 3.5
+# v0.8.2 for Python 3.5
 
 # Define coins:
 
@@ -114,10 +114,10 @@ for coin, alert in coins.items():
 	message = exceeded + coin.upper() + ': £' + str(value) + indicator + ' £' + str(real_money)
 	pushover_message += message + ' | '
 
-	# Store a maximum of the last 24 data elements for each currency, and create and save graphs:
+	# Store a maximum of the last 28 data elements for each currency, and create and save graphs:
 
 	# Pop first element from list, append latest value to list:
-	if len(y) >= 24:
+	if len(y) >= 28:
 		y.pop(0)
 	y.append(str(value) + '\n')
 
